@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@notifee/react-native": "^5.4.1",
     "@react-native-community/voice": "^1.1.9",
     "@react-native-voice/voice": "^3.2.4",
     "react": "17.0.2",
