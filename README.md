@@ -3,9 +3,8 @@
 This is a mobile version of my project [Jarvis](https://github.com/mustafakemaltoprak/Jarvis)
 <br />
 <br />
-# Disclaimer<img width="802" alt="Screenshot 2022-07-06 at 16 52 17" src="https://user-images.githubusercontent.com/96595583/177580217-c4f692ea-2bd7-44ce-991a-8555ab592579.png">
-<br />
-<br />
+<img width="802" alt="Screenshot 2022-07-06 at 16 52 17" src="https://user-images.githubusercontent.com/96595583/177580665-b680b463-0ddd-4856-9bb7-4031155e0e46.png">
+# Disclaimer
 **Light commands** will **only** work with **Philips HUE Smart Lights**, follow [this](https://developers.meethue.com/develop/get-started-2/) documentation to set it up.
 <br />
 <br />
