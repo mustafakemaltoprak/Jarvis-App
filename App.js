@@ -21,7 +21,7 @@ const App = () => {
   const onSpeechResults = async e => {
     try {
       let transcript = e.value.toString().split(' ');
-
+      console.log(transcript);
       if (
         transcript.includes('jarvis') ||
         transcript.includes('Jarvis') ||
@@ -42,6 +42,7 @@ const App = () => {
         ) {
           turnLightOff();
           Tts.speak('I turned the lights off sir');
+          Voice.destroy();
           return;
         } else if (
           (transcript.includes('lights') || transcript.includes('light')) &&
@@ -49,6 +50,7 @@ const App = () => {
         ) {
           turnLightOn(133, 1, 250);
           Tts.speak('I turned the lights on sir');
+          Voice.destroy();
           return;
         } else if (
           (transcript.includes('lights') || transcript.includes('light')) &&
@@ -56,6 +58,7 @@ const App = () => {
         ) {
           turnLightOn(1, 250, 250);
           Tts.speak('Your lights are now red sir');
+          Voice.destroy();
           return;
         } else if (
           (transcript.includes('lights') || transcript.includes('light')) &&
@@ -63,6 +66,7 @@ const App = () => {
         ) {
           turnLightOn(27306, 250, 250);
           Tts.speak('Your lights are now green sir');
+          Voice.destroy();
           return;
         } else if (
           (transcript.includes('lights') || transcript.includes('light')) &&
@@ -70,6 +74,7 @@ const App = () => {
         ) {
           turnLightOn(133, 1, 250);
           Tts.speak('Your lights are now white sir');
+          Voice.destroy();
           return;
         } else if (
           (transcript.includes('lights') || transcript.includes('light')) &&
@@ -77,6 +82,7 @@ const App = () => {
         ) {
           turnLightOn(43690, 250, 250);
           Tts.speak('Your lights are now blue sir');
+          Voice.destroy();
           return;
         } else if (
           (transcript.includes('lights') || transcript.includes('light')) &&
@@ -84,6 +90,7 @@ const App = () => {
         ) {
           turnLightOn(50000, 250, 250);
           Tts.speak('Your lights are now purple sir');
+          Voice.destroy();
           return;
         } else if (
           (transcript.includes('lights') || transcript.includes('light')) &&
@@ -91,6 +98,7 @@ const App = () => {
         ) {
           turnLightOn(55000, 250, 250);
           Tts.speak('Your lights are now pink sir');
+          Voice.destroy();
           return;
         } else if (transcript.includes('weather')) {
           fetch(
@@ -102,6 +110,7 @@ const App = () => {
                 `It's ${result.current.temp_c} degrees Celsius in Berlin sir.`,
               ),
             );
+          Voice.destroy();
           return;
         } else if (
           transcript.includes('stop') &&
@@ -109,6 +118,7 @@ const App = () => {
         ) {
           Tts.speak('I will stop listening sir');
           Voice.cancel();
+          Voice.destroy();
           return;
         }
       }
