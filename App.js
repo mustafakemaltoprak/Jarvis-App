@@ -38,7 +38,13 @@ const App = () => {
         transcript.includes('jobs') ||
         transcript.includes('Jobs') ||
         transcript.includes('Travellers') ||
-        transcript.includes('travellers')
+        transcript.includes('travellers') ||
+        transcript.includes('Giannis') ||
+        transcript.includes('giannis') ||
+        transcript.includes('Jonas') ||
+        transcript.includes('jonas') ||
+        transcript.includes('Jones') ||
+        transcript.includes('jones')
       ) {
         if (
           (transcript.includes('lights') || transcript.includes('light')) &&
@@ -131,9 +137,10 @@ const App = () => {
           transcript.some(e =>
             /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(e),
           ) &&
-          transcript.includes('PM') &&
-          transcript.includes('AM')
+          transcript.includes('PM' || 'AM')
         ) {
+          await notifee.requestPermission();
+
           const date = new Date(Date.now());
 
           const convertTime12to24 = time12h => {
@@ -165,6 +172,13 @@ const App = () => {
 
           setDate();
 
+          let arrayIntoString = transcript.join(' ');
+
+          let reminderWord = arrayIntoString.substring(
+            arrayIntoString.lastIndexOf('I'),
+            arrayIntoString.lastIndexOf('at') - 1,
+          );
+
           const trigger: TimestampTrigger = {
             type: TriggerType.TIMESTAMP,
             timestamp: date.getTime(),
@@ -173,7 +187,7 @@ const App = () => {
           await notifee.createTriggerNotification(
             {
               title: 'Jarvis',
-              body: `${transcript.slice(4, transcript.length - 3).join(' ')}`,
+              body: reminderWord,
             },
             trigger,
           );
