@@ -10,7 +10,6 @@ import {
   View,
   Image,
   TouchableHighlight,
-  Text,
 } from 'react-native';
 
 import Voice from 'react-native-voice';
@@ -213,7 +212,7 @@ const App = () => {
   function turnLightOn(hue, sat, bri) {
     fetch(
       // ADD YOUR PERSONAL PHILIPS HUE LIGHTS LINK HERE, CHECK READ ME FOR HELP
-      process.env.PHILIPS_API_LINK,
+      'link here',
       {
         method: 'PUT',
         headers: {
@@ -233,7 +232,7 @@ const App = () => {
   function turnLightOff() {
     fetch(
       // ADD YOUR PERSONAL PHILIPS HUE LIGHTS LINK HERE, CHECK READ ME FOR HELP
-      process.env.PHILIPS_API_LINK,
+      'link here',
       {
         method: 'PUT',
         headers: {
