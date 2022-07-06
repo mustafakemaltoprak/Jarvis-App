@@ -3,15 +3,16 @@
 This is a mobile version of my project [Jarvis](https://github.com/mustafakemaltoprak/Jarvis)
 <br />
 <br />
-# Disclaimer
-
+# Disclaimer<img width="802" alt="Screenshot 2022-07-06 at 16 52 17" src="https://user-images.githubusercontent.com/96595583/177580217-c4f692ea-2bd7-44ce-991a-8555ab592579.png">
+<br />
+<br />
 **Light commands** will **only** work with **Philips HUE Smart Lights**, follow [this](https://developers.meethue.com/develop/get-started-2/) documentation to set it up.
 <br />
 <br />
 
 # Voice Commands
 
-Include Jarvis & Light or Lights & Off: Will turn off the lights.
+Include Jarvis & Light or Lights & Off: Will turn the lights off.
 <br />
 <br />
 Include Jarvis & Light or Lights & On: Will turn the lights on.
@@ -21,6 +22,9 @@ Include Jarvis & Light or Lights & Red or Green or Purple or White or Blue or Pi
 <br />
 <br />
 Include Jarvis & Weather: Will give you the current weather in celsius.
+<br />
+<br />
+Include Jarvis & Remind me that I & time (needs to be AM/PM so for example: 2:30 PM): Will send you a scheduled push notification with whatever you said between Remind me that I and your time at the end
 <br />
 <br />
 Include Jarvis & Stop & Listening: Will stop listening for your voice.
