@@ -10,9 +10,11 @@ import {
   View,
   Image,
   TouchableHighlight,
+  Text,
 } from 'react-native';
 
 import Voice from 'react-native-voice';
+import notifee, {TimestampTrigger, TriggerType} from '@notifee/react-native';
 
 const App = () => {
   useEffect(() => {
@@ -31,6 +33,8 @@ const App = () => {
         transcript.includes('Java') ||
         transcript.includes('Chavez') ||
         transcript.includes('chavez') ||
+        transcript.includes('Chaviz') ||
+        transcript.includes('chaviz') ||
         transcript.includes('jobs') ||
         transcript.includes('Jobs') ||
         transcript.includes('Travellers') ||
@@ -117,9 +121,64 @@ const App = () => {
           transcript.includes('listening')
         ) {
           Tts.speak('I will stop listening sir');
-          Voice.cancel();
           Voice.destroy();
           return;
+        } else if (
+          transcript.includes('remind') &&
+          transcript.includes('me') &&
+          transcript.includes('that') &&
+          transcript.includes('I') &&
+          transcript.some(e =>
+            /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(e),
+          ) &&
+          transcript.includes('PM') &&
+          transcript.includes('AM')
+        ) {
+          const date = new Date(Date.now());
+
+          const convertTime12to24 = time12h => {
+            let [hours, minutes] = time12h.split(':');
+
+            if (hours === '12') {
+              hours = '00';
+            }
+
+            if (transcript.includes('PM')) {
+              hours = parseInt(hours, 10) + 12;
+            }
+
+            return `${hours}:${minutes}`;
+          };
+
+          function setDate() {
+            let matches = transcript.filter(el =>
+              /^(0?[1-9]|1[0-2]):[0-5][0-9]$/.test(el),
+            );
+
+            let getTimes = convertTime12to24(matches[0]);
+
+            let times = getTimes.split(':');
+
+            date.setHours(times[0]);
+            date.setMinutes(times[1]);
+          }
+
+          setDate();
+
+          const trigger: TimestampTrigger = {
+            type: TriggerType.TIMESTAMP,
+            timestamp: date.getTime(),
+          };
+
+          await notifee.createTriggerNotification(
+            {
+              title: 'Jarvis',
+              body: `${transcript.slice(4, transcript.length - 3).join(' ')}`,
+            },
+            trigger,
+          );
+
+          Voice.destroy();
         }
       }
     } catch (error) {
@@ -172,6 +231,14 @@ const App = () => {
     ).then(res => res.json());
   }
 
+  // async function giveNotification() {
+  //   await notifee.requestPermission();
+  //   await notifee.displayNotification({
+  //     title: 'hello',
+  //     body: 'world',
+  //   });
+  // }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
@@ -203,5 +270,8 @@ const styles = StyleSheet.create({
     width: 225,
     height: 225,
     marginBottom: 100,
+  },
+  textColor: {
+    color: 'white',
   },
 });
