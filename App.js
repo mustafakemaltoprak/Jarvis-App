@@ -142,6 +142,8 @@ const App = () => {
 
           const date = new Date(Date.now());
 
+          let forTts = '';
+
           const convertTime12to24 = time12h => {
             let [hours, minutes] = time12h.split(':');
 
@@ -162,6 +164,8 @@ const App = () => {
             );
 
             let getTimes = convertTime12to24(matches[0]);
+
+            forTts = convertTime12to24(matches[0]);
 
             let times = getTimes.split(':');
 
@@ -190,6 +194,8 @@ const App = () => {
             },
             trigger,
           );
+
+          Tts.speak(`Reminder ${reminderWord} is set for ${forTts} sir`);
 
           Voice.destroy();
         }
