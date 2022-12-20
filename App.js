@@ -11,12 +11,15 @@ import {
   Image,
   TouchableHighlight,
   Text,
+  LogBox,
 } from 'react-native';
 
 import Voice from 'react-native-voice';
 import notifee, {TriggerType} from '@notifee/react-native';
 
 const App = () => {
+  LogBox.ignoreAllLogs();
+
   const [pitch, setPitch] = useState('');
   const [error, setError] = useState('');
   const [end, setEnd] = useState('');
@@ -87,7 +90,7 @@ const App = () => {
         newTranscript.includes('off')
       ) {
         turnLightOff();
-        await stopSpeechRecognizing();
+        await Voice.destroy();
         Tts.speak('I turned the lights off sir');
         return;
       } else if (
@@ -95,7 +98,7 @@ const App = () => {
         newTranscript.includes('on')
       ) {
         turnLightOn(133, 1, 250);
-        await stopSpeechRecognizing();
+        await Voice.destroy();
         Tts.speak('I turned the lights on sir');
         return;
       } else if (
@@ -103,7 +106,7 @@ const App = () => {
         newTranscript.includes('red')
       ) {
         turnLightOn(1, 250, 250);
-        await stopSpeechRecognizing();
+        await Voice.destroy();
         Tts.speak('Your lights are now red sir');
         return;
       } else if (
@@ -111,7 +114,7 @@ const App = () => {
         newTranscript.includes('green')
       ) {
         turnLightOn(27306, 250, 250);
-        await stopSpeechRecognizing();
+        await Voice.destroy();
         Tts.speak('Your lights are now green sir');
         return;
       } else if (
@@ -119,7 +122,7 @@ const App = () => {
         newTranscript.includes('white')
       ) {
         turnLightOn(133, 1, 250);
-        await stopSpeechRecognizing();
+        await Voice.destroy();
         Tts.speak('Your lights are now white sir');
         return;
       } else if (
@@ -127,7 +130,7 @@ const App = () => {
         newTranscript.includes('blue')
       ) {
         turnLightOn(43690, 250, 250);
-        await stopSpeechRecognizing();
+        await Voice.destroy();
         Tts.speak('Your lights are now blue sir');
         return;
       } else if (
@@ -135,7 +138,7 @@ const App = () => {
         newTranscript.includes('purple')
       ) {
         turnLightOn(50000, 250, 250);
-        await stopSpeechRecognizing();
+        await Voice.destroy();
         Tts.speak('Your lights are now purple sir');
         return;
       } else if (
@@ -143,7 +146,7 @@ const App = () => {
         newTranscript.includes('pink')
       ) {
         turnLightOn(55000, 250, 250);
-        await stopSpeechRecognizing();
+        await Voice.destroy();
         Tts.speak('Your lights are now pink sir');
         return;
       } else if (
@@ -216,12 +219,12 @@ const App = () => {
 
         Tts.speak(`Reminder ${reminderWord} is set for ${forTts} sir`);
 
-        await stopSpeechRecognizing();
+        await Voice.destroy();
       } else if (
         newTranscript.includes('stop') &&
         newTranscript.includes('listening')
       ) {
-        await stopSpeechRecognizing();
+        await Voice.destroy();
         return;
       }
     }
